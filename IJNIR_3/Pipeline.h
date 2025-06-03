@@ -42,20 +42,21 @@ public:
         m_persProj.zNear = zNear;
         m_persProj.zFar = zFar;
     }
+
     void SetCamera(const Vector3f& Pos, const Vector3f& Target, const Vector3f& Up)
     {
         m_camera.Pos = Pos;
         m_camera.Target = Target;
         m_camera.Up = Up;
     }
-    const Matrix4f* GetTrans();
+
+
+    const Matrix4f& GetWVPTrans();
+
+    const Matrix4f& GetWorldTrans();
+
 
 private:
-    void InitScaleTransform(Matrix4f& m) const;
-    void InitRotateTransform(Matrix4f& m) const;
-    void InitTranslationTransform(Matrix4f& m) const;
-    void InitPerspectiveProj(Matrix4f& m) const;
-
     Vector3f m_scale;
     Vector3f m_worldPos;
     Vector3f m_rotateInfo;
@@ -74,10 +75,10 @@ private:
         Vector3f Up;
     } m_camera;
 
-    Matrix4f m_transformation;
+    Matrix4f m_WVPtransformation;
+    Matrix4f m_WorldTransformation;
 };
 
 
 #endif	/* PIPELINE_H */
 #pragma once
-
