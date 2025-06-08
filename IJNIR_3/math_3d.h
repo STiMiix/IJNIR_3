@@ -24,6 +24,33 @@ struct Vector3f
         z = _z;
     }
 
+    Vector3f& operator+=(const Vector3f& r)
+    {
+        x += r.x;
+        y += r.y;
+        z += r.z;
+
+        return *this;
+    }
+
+    Vector3f& operator-=(const Vector3f& r)
+    {
+        x -= r.x;
+        y -= r.y;
+        z -= r.z;
+
+        return *this;
+    }
+
+    Vector3f& operator*=(float f)
+    {
+        x *= f;
+        y *= f;
+        z *= f;
+
+        return *this;
+    }
+
     Vector3f Cross(const Vector3f& v) const;
 
     Vector3f& Normalize();
@@ -33,6 +60,25 @@ struct Vector3f
         printf("(%.02f, %.02f, %.02f", x, y, z);
     }
 };
+
+inline Vector3f operator-(const Vector3f& l, const Vector3f& r)
+{
+    Vector3f Ret(l.x - r.x,
+        l.y - r.y,
+        l.z - r.z);
+
+    return Ret;
+}
+
+inline Vector3f operator*(const Vector3f& l, float f)
+{
+    Vector3f Ret(l.x * f,
+        l.y * f,
+        l.z * f);
+
+    return Ret;
+}
+
 
 class Matrix4f
 {
@@ -77,4 +123,3 @@ public:
 
 
 #endif	/* MATH_3D_H */
-#pragma once
